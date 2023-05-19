@@ -1,0 +1,36 @@
+{
+    "name": "vadgab/yii2-google-sheets-api",
+    "type": "yii2-extension",
+    "keywords": ["yii2", "google-sheets", "api"],
+    "description": "The application is a YII2-Extension for the Google Sheets API",
+    "license": "MIT",
+    "version": "1.0",
+    "support": {
+    },
+    "authors": [
+        {
+            "name": "Gábor Vadász",
+            "email": "gabor.vadasz@allstar.hu"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "yiisoft/yii2": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "vadgab\\Yii2GoogleSheet\\": "src"
+        }
+    },
+    "classmap" : [
+        "src/"
+    ],	
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.packagist.org"
+        }
+    ],
+    "require-dev": {
+    }
+}
