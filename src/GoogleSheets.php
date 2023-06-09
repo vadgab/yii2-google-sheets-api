@@ -1,6 +1,6 @@
 <?php
 
-namespace vadgab\Yii2GoogleSheets; 
+namespace vadgab\Yii2GoogleSheet; 
 
 use \Exception;
 class GoogleSheets
@@ -10,11 +10,11 @@ class GoogleSheets
     private $scopes;
     private $accessToken;
 
-	public $calendarId = "";
-	public $eventId = "";
+	public $spreadsheetId;
+	public $range;
 	private $url = "";
 
-	const URL_SETTING_TIMEZONE = "https://www.googleapis.com/calendar/v3/users/me/settings/timezone";
+	const URL_SPREADSHEET = "https://sheets.googleapis.com/v4/spreadsheets/";
 	const URL_OAUTH2_TOKEN = "https://www.googleapis.com/oauth2/v4/token";
 	
 	/**
@@ -188,20 +188,9 @@ class GoogleSheets
 	 * @param  array $params
 	 * @return void
 	 */
-	public function getEvents($params = [])
+	public function getSheetValue()
     {
-        $this->url = "https://www.googleapis.com/calendar/v3/calendars/{$this->calendarId}/events";
-		if($this->eventId)
-			$this->url = $this->url."/".$this->eventId;
-		if(!empty($params)){
-			$this->url = $this->url."?";
-			$count = 0;			
-			foreach($params as $key => $item){
-				if($count == 0)$separator = "";
-				else $separator = "&";
-				$this->url = $this->url.$separator.$key."=".$item;			
-			}
-		}
+        $this->url = self::URL_SPREADSHEET."".$this->spreadsheetId."/values/".$this->range."";
 
         $headers = array(
             "Authorization: Bearer {$this->accessToken}",
